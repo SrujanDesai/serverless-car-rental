@@ -1,0 +1,17 @@
+service: car-rental
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: ap-south-1
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: '*'
+          cors: true
