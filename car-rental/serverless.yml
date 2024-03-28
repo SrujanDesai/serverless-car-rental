@@ -10,7 +10,6 @@ provider:
 functions:
   app:
     handler: index.handler
+    timeout: 30
     events:
-      - httpApi:
-          path: /
-          method: "*"
+      - httpApi: "*"

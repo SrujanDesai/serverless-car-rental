@@ -1,6 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const app = express();
+const mongoose = require("mongoose");
 const adminRouter = require("./router/adminRouter");
 const userRouter = require("./router/userRouter");
 const carRouter = require("./router/carRouter");
@@ -9,6 +10,13 @@ const authRouter = require("./router/authRouter");
 // Initialize Express application
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Connect to MongoDB database
+mongoose.connect(
+    "mongodb+srv://srujan:mongodb2512@cluster0.h4itok2.mongodb.net/car-rental"
+  )
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Failed to connect to MongoDB", err));
 
 // Route handling for different functionalities
 app.use("/admin", adminRouter); // Routes for admin functionalities
